@@ -1,0 +1,26 @@
+<annotation>
+  <folder>train</folder>
+  <filename>9</filename>
+  <path>C:\kelebek\models\research\object_detection\images\train\9.jpg</path>
+  <source>
+    <database>Unknown</database>
+  </source>
+  <size>
+    <width>744</width>
+    <height>995</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>kelebek</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>295</xmin>
+      <ymin>553</ymin>
+      <xmax>668</xmax>
+      <ymax>902</ymax>
+    </bndbox>
+  </object>
+</annotation>
