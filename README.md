@@ -87,9 +87,13 @@ CMD’yi yönetici olarak çalıştırın. Aşağıda verilen adımları sıras�
 
 <br> Gerekli dizine gidelim.
 > cd C:\dosyaİsmi\models\research\object_detection\packages\tf1
+
 <br> Burada da dikkat etmemiz gereken kısım tenserflow 1 sürümü için olan setup.py dosyası kullanılmıştır. Eğer tensorflow 2 sürümü için kullanmak istiyorsanız tf1’i tf2 olarak değiştirin.
+
 ` cd C:\kelebek\models\research\object_detection\packages\tf1 `
-<br> Gerekli dizine gidildikten sonra setup.py dosyası için olan işlemler yapılır.
+
+Gerekli dizine gidildikten sonra setup.py dosyası için olan işlemler yapılır.
+
 > python setup.py build
 
 > python setup.py install
