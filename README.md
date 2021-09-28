@@ -93,7 +93,161 @@ CMD’yi yönetici olarak çalıştırın. Aşağıda verilen adımları sıras�
 
 
 ## 5. Fotoğraf Toplama ve Resimleri Etiketleme
-## 6. Modeli Eğitme
-## 7. Modeli Çıkartma
-## 8. Modeli Kullanma
-## 9.Kapanış ve Sonuçlar
+Oluşturmak istediğiniz modeli ne üzerine eğiteceğinize karar verdikten sonraki önemli adım gerekli verileri toplamaktır. Biz bu örneğimizde kelebekleri bulan bir model eğittiğimiz için internetten çeşitli kelebekler resmi bulup indirildi. İndirdiğiniz fotoğrafların %80ini train için %20’sini test için ayırıyoruz. Resimlerin çeşitli olmasına dikkat edin. Ne kadar çok veri o kadar iyi eğitilmiş bir model.
+<br>Resimleri bulduktan sonra onları etiketlememiz gerekmekte. Fotoğrafta hangi karede istediğimiz nesne var ve bu nesnenin ismi nedir gibi çeşitli bilgileri belirtmemiz lazım. Bunun için kullanacağımız uygulama ise "LabelImg".
+<br> [LabelImg](https://tzutalin.github.io/labelImg/) linkten indirelim ve çıkaralım. Çıkardığımız dosyanın içerisindeki uzantısı .exe olan dosyayı çalıştırdığımızda uygulama başlayacaktır. 
+> C:\dosyaİsmi\models\research\object_detection\images 
+
+<br> dizinine gidelim ve .csv uzantılı dosyaları silelim. Train ve test dosyalarının içerisindeki verilerinde tamamını silelim. İndirdiğimiz resimleri yukarıda söylenen yüzdelere göre bir kısmını train dosyasına geri kalanını da test dosyası içerisine koyalım. Resimlerin;
+> %20’sini "C:\dosyaİsmi\models\research\object_detection\images\test\"
+
+> %80’ni "C:\dosyaİsmi\models\research\object_detection\images\train\"
+
+<br>LabelImg uygulamasını çalıştıralım ve sol tarafta bulunan simgelerden “Open dir” seçelim ve resimlerimizin olduğu dosyaya gidelim. Gidilmesi planlanan dosya dizi: 
+> C:\dosyaİsmi\models\research\object_detection\images 
+
+<br>Resimler karşımıza gelecek ve sol tarafta “Create RectBox” simgesine tıklayalım ve nesnemizin bulunduğu alanı kare içerisine alalım. Kare içerisine aldıktan sonra ismini girelim. (İstediğiniz herhangi bir isim olabilir. Nesnenizle uyumlu olması iyi olacaktır. Save edip devam edelim. Bütün resimler için aynı işlemi yapalım.
+<br>İşlemler bittiğinde test ve train dosyalarının içerisinde resimlerinizin tek tek .xml şeklinde dosyaların oluşturulduğunu göreceksiniz.
+> C:\dosyaİsmi\models\research\object_detection
+
+Dizinin içerisindeki “xml_to_csv.py” dosyasını verdiğim linkteki “xml_to_csv.py” dosyası ile değiştirin.
+[Link](https://github.com/merveabd20/xml_to_csv.py)
+
+> C:\dosyaİsmi\models\research\object_detection dizinine gidin.
+
+` cd C:\kelebek\models\research\object_detection `
+
+<br> Çalıştırın;
+> python xml_to_csv.py  
+
+<br>İşlem başarılı olduysa images dosyası içerisinde iki tane .csv uzantılı dosya göreceksiniz.
+<br>generate_tfrecord.py dosyasını düzenleyelim. Etiket haritasını kendi haritanızla değiştirin.
+Bundan;
+<br>#TO-DO replace this with label map
+def class_text_to_int(row_label):
+    if row_label == 'nine':
+        return 1
+    elif row_label == 'ten':
+        return 2
+    elif row_label == 'jack':
+        return 3
+    elif row_label == 'queen':
+        return 4
+    elif row_label == 'king':
+        return 5
+    elif row_label == 'ace':
+        return 6
+    else:
+        None
+<br>Buna;
+<br>#TO-DO replace this with label map
+def class_text_to_int(row_label):
+    if row_label == 'kelebek':
+        return 1
+    else:
+        None
+
+<br>Eğitilen modelimizde bir tane etiket olduğu için diğer kısımlar silindi ve etiketin ismi kendi etiket ismimiz olarak düzeltildi. Sizin kaç tane etiketiniz varsa o kadar ekleyebilirsiniz.
+<br>Düzeltme işlemi yapıldıktan sonra 
+> C:\dosyaİsmi\models\research\object_detection 
+
+<br>Dizini içerisine gidip aşağıdaki kodları çalıştırıyoruz. 
+` C:\kelebek\models\research\object_detection `
+
+> python generate_tfrecord.py --csv_input=images\train_labels.csv --image_dir=images\train --output_path=train.record
+
+> python generate_tfrecord.py --csv_input=images\test_labels.csv --image_dir=images\test --output_path=test.record
+
+<br>Dikkat etmeniz gereken bir şey ise bu kodları sırası ile çalıştırdığınızda “Successfully created the TFRecords:…” yazısını görmelisiniz. Aksi takdirde üst kısımlarda bir hata vermişse örneğin “Windows fatal exception: access violation” gibi ve siz bunu gözden kaçırırsanız işlemlerin devamında hatalarla karşılaşabilirsiniz. Dikkat edin!
+
+## 6. Dosya düzenleme
+> C:\dosyaİsmi\models\research\object_detection\training dizinine gidin
+
+` C:\kelebek\models\research\object_detection\training`
+
+<br>Dizinindeki “labelmap.pbtxt” dosyayı açıp düzenleyin.
+<br>Bundan;
+item {
+  id: 1
+  name: 'nine'
+}
+item {
+  id: 2
+  name: 'ten'
+}
+item {
+  id: 3
+  name: 'jack'
+}
+item {
+  id: 4
+  name: 'queen'
+}
+item {
+  id: 5
+  name: 'king'
+}
+item {
+  id: 6
+  name: 'ace'
+}
+
+<br>Buna;
+item {
+  id: 1
+  name: 'kelebek'
+}
+<br>Sizin kaç tane bulmak istediğiniz nesne varsa o kadar item silebilir / ekleyebilirsiniz.
+<br> C:\dosyaİsmi\models\research\object_detection\training dizininde bulunan “faster_rcnn_inception_v2_pets.config” dosyasını açıp düzenleyin.
+<br>Satır 9’daki num_classes değerini kameraya algılatmak istediğiniz nesne sayısı ile değiştirin.
+num_classes: 1
+<br>Satır 110’daki 
+> fine_tune_checkpoint: "C:/dosyaİsmi/models/research/object_detection/faster_rcnn_inception_v2_coco_2018_01_28/model.ckpt" 
+
+<br>Dizini kendi dizin isminize göre değiştirin.
+` fine_tune_checkpoint: "C:/kelebek/models/research/object_detection/faster_rcnn_inception_v2_coco_2018_01_28/model.ckpt" `
+
+<br>Satır 126’daki 
+> input_path: "C:/dosyaİsmi/models/research/object_detection/train.record"
+
+<br>Dizini kendi dizin isminize göre değiştirin.
+` input_path: "C:/kelebek/models/research/object_detection/train.record" `
+
+<br>Satır 128’deki
+> label_map_path: "C:/dosyaİsmi/models/research/object_detection/training/labelmap.pbtxt"
+
+Dizini kendi dizin isminize göre değiştirin.
+` label_map_path: "C:/kelebek/models/research/object_detection/training/labelmap.pbtxt" `
+
+<br>Satır 132’deki
+num_examples: 67 
+> "C:\dosyaİsmi\models\research\object_detection\images\test"
+
+Klasörünün içindeki resim sayısıyla değiştirin.
+
+<br>Satır 140’taki
+> input_path: "C:/dosyaİsmi/models/research/object_detection/test.record"
+
+Dizini kendi dizin isminize göre değiştirin.
+` input_path: "C:/kelebek/models/research/object_detection/test.record" `
+
+<br>Satır 142’deki 
+> label_map_path: "C:/dosyaİsmi/models/research/object_detection/training/labelmap.pbtxt"
+
+<br>Dizini kendi dizin isminize göre değiştirin.
+` label_map_path: "C:/kelebek/models/research/object_detection/training/labelmap.pbtxt" `
+
+<br>Satır 116’daki 
+<br>num_steps parametresi, eğitim aşamasının kaç adımda biteceğini belirtir. Bu sayı gerçekten veri kümenizin boyutuna ve bir dizi başka faktöre bağlıdır (modelin ne kadar süre çalışmasına izin vermek istediğiniz dahil). Eğitime başladığınızda, her bir eğitim adımının ne kadar sürdüğünü görmenizi ve buna göre num_steps'i ayarlamanızı öneririm.
+<br>Örnek bir proje yaptığım için bu sayısı 4000 olarak ayarladım. Siz kendi modelinizin işlevine göre bu sayıyı değiştirebilirsiniz.
+<br>Son olarak dosyalarınızdaki değişiklikleri kaydedin ve çıkın.
+
+
+## 7. Modeli Eğitme
+
+## 8. Modeli Çıkartma
+
+## 9. Modeli Kullanma
+
+## 10.Kapanış ve Sonuçlar
+
