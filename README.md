@@ -71,11 +71,14 @@ CMD’yi yönetici olarak çalıştırın. Aşağıda verilen adımları sıras�
 
 <br> Çevre değişkenini tanımlayalım. CMD’yi her yeniden açtığımızda bu kısmı tekrarlayalım.
 > set PYTHONPATH=C:\dosyaİsmi\models;C:\dosyaİsmi\models\research;C:\dosyaİsmi\models\research\slim
+
 ` set PYTHONPATH=C:\kelebek\models;C:\kelebek\models\research;C:\kelebek\models\research\slim `
+
 <br> Protobufları derleyelim ve setup.py dosyasını çalıştıralım.
 <br> Protobuf : Gerçek ismi Protocol Buffers olan, Google’ın kendi içindeki veri iletisiminde de bolca kullandığı bir veri transfer protokolüdür. 
 <br> Gerekli dizine gidelim.
 > cd C:\dosyaİsmi\models\research
+
 ` cd C:\kelebek\models\research `
 
 <br>Aşağıdaki kodu çalıştıralım.
