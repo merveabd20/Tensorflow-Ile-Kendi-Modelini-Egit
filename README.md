@@ -133,30 +133,30 @@ Dizinin içerisindeki “xml_to_csv.py” dosyasını verdiğim linkteki “xml_
 
 <br>İşlem başarılı olduysa images dosyası içerisinde iki tane .csv uzantılı dosya göreceksiniz.
 <br>generate_tfrecord.py dosyasını düzenleyelim. Etiket haritasını kendi haritanızla değiştirin.
-Bundan;
+<br>Bundan;
 <br>#TO-DO replace this with label map
-def class_text_to_int(row_label):
-    if row_label == 'nine':
-        return 1
-    elif row_label == 'ten':
-        return 2
-    elif row_label == 'jack':
-        return 3
-    elif row_label == 'queen':
-        return 4
-    elif row_label == 'king':
-        return 5
-    elif row_label == 'ace':
-        return 6
-    else:
-        None
+<br>def class_text_to_int(row_label):
+    <br>if row_label == 'nine':
+   <br>     return 1
+  <br>  elif row_label == 'ten':
+  <br>      return 2
+   <br> elif row_label == 'jack':
+  <br>      return 3
+  <br>  elif row_label == 'queen':
+  <br>      return 4
+   <br> elif row_label == 'king':
+   <br>     return 5
+  <br>  elif row_label == 'ace':
+   <br>     return 6
+  <br>  else:
+    <br>    None
 <br>Buna;
 <br>#TO-DO replace this with label map
-def class_text_to_int(row_label):
-    if row_label == 'kelebek':
-        return 1
-    else:
-        None
+<br>def class_text_to_int(row_label):
+ <br>   if row_label == 'kelebek':
+<br>        return 1
+ <br>   else:
+   <br>     None
 
 <br>Eğitilen modelimizde bir tane etiket olduğu için diğer kısımlar silindi ve etiketin ismi kendi etiket ismimiz olarak düzeltildi. Sizin kaç tane etiketiniz varsa o kadar ekleyebilirsiniz.
 <br>Düzeltme işlemi yapıldıktan sonra 
@@ -316,3 +316,6 @@ Verilen bir resimdeki nesneleri tanımak istiyorsak
 > conda deactivate 
 
 <br>Yazarak kapatabilirsiniz.
+
+![Sonuc1](https://github.com/merveabd20/Tensorflow-Ile-Kendi-Modelini-Egit/blob/main/sonuc1.png?raw=true)
+![Sonuc2](https://github.com/merveabd20/Tensorflow-Ile-Kendi-Modelini-Egit/blob/main/sonuc2.png?raw=true)
