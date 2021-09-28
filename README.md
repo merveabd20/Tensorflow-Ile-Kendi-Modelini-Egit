@@ -197,53 +197,71 @@ item {
   id: 1
   name: 'kelebek'
 }
+
 <br>Sizin kaç tane bulmak istediğiniz nesne varsa o kadar item silebilir / ekleyebilirsiniz.
-<br> C:\dosyaİsmi\models\research\object_detection\training dizininde bulunan “faster_rcnn_inception_v2_pets.config” dosyasını açıp düzenleyin.
-<br>Satır 9’daki num_classes değerini kameraya algılatmak istediğiniz nesne sayısı ile değiştirin.
-num_classes: 1
-<br>Satır 110’daki 
+<br> C:\dosyaİsmi\models\research\object_detection\training dizininde bulunan `“faster_rcnn_inception_v2_pets.config”` dosyasını açıp düzenleyin.
+
+<br>**Satır 9’daki** num_classes değerini kameraya algılatmak istediğiniz nesne sayısı ile değiştirin.
+
+`num_classes: 1`
+
+<br>**Satır 110’daki** 
 > fine_tune_checkpoint: "C:/dosyaİsmi/models/research/object_detection/faster_rcnn_inception_v2_coco_2018_01_28/model.ckpt" 
 
 <br>Dizini kendi dizin isminize göre değiştirin.
+
 ` fine_tune_checkpoint: "C:/kelebek/models/research/object_detection/faster_rcnn_inception_v2_coco_2018_01_28/model.ckpt" `
 
-<br>Satır 126’daki 
+<br>**Satır 126’daki**
 > input_path: "C:/dosyaİsmi/models/research/object_detection/train.record"
 
 <br>Dizini kendi dizin isminize göre değiştirin.
+
 ` input_path: "C:/kelebek/models/research/object_detection/train.record" `
 
-<br>Satır 128’deki
+<br>**Satır 128’deki**
 > label_map_path: "C:/dosyaİsmi/models/research/object_detection/training/labelmap.pbtxt"
 
 Dizini kendi dizin isminize göre değiştirin.
+
 ` label_map_path: "C:/kelebek/models/research/object_detection/training/labelmap.pbtxt" `
 
-<br>Satır 132’deki
-num_examples: 67 
+<br>**Satır 132’deki**
+
+` num_examples: 67 `
+
 > "C:\dosyaİsmi\models\research\object_detection\images\test"
 
 Klasörünün içindeki resim sayısıyla değiştirin.
 
-<br>Satır 140’taki
+<br>**Satır 140’taki**
 > input_path: "C:/dosyaİsmi/models/research/object_detection/test.record"
 
 Dizini kendi dizin isminize göre değiştirin.
+
 ` input_path: "C:/kelebek/models/research/object_detection/test.record" `
 
-<br>Satır 142’deki 
+<br>**Satır 142’deki** 
 > label_map_path: "C:/dosyaİsmi/models/research/object_detection/training/labelmap.pbtxt"
 
-<br>Dizini kendi dizin isminize göre değiştirin.
+Dizini kendi dizin isminize göre değiştirin.
+
 ` label_map_path: "C:/kelebek/models/research/object_detection/training/labelmap.pbtxt" `
 
-<br>Satır 116’daki 
+<br>**Satır 116’daki**
+
 <br>num_steps parametresi, eğitim aşamasının kaç adımda biteceğini belirtir. Bu sayı gerçekten veri kümenizin boyutuna ve bir dizi başka faktöre bağlıdır (modelin ne kadar süre çalışmasına izin vermek istediğiniz dahil). Eğitime başladığınızda, her bir eğitim adımının ne kadar sürdüğünü görmenizi ve buna göre num_steps'i ayarlamanızı öneririm.
-<br>Örnek bir proje yaptığım için bu sayısı 4000 olarak ayarladım. Siz kendi modelinizin işlevine göre bu sayıyı değiştirebilirsiniz.
+<br>Örnek bir proje yaptığım için bu sayısı 4000 olarak ayarladım. 
+
+`  num_steps: 4000 `
+Siz kendi modelinizin işlevine göre bu sayıyı değiştirebilirsiniz.
 <br>Son olarak dosyalarınızdaki değişiklikleri kaydedin ve çıkın.
 
 
 ## 7. Modeli Eğitme
+Bu işlem süresi kartlarınızın performansına göre değişiklik gösterir. 
+<br> Birkaç saat ile birkaç gün arasında.
+
 > C:\dosyaİsmi\models\research\object_detection\legacy 
 
 <br>Klasörünün içinde bulunan “train.py” dosyayı object_detection klasörüne kopyalayın.
@@ -270,15 +288,20 @@ Eğitim işlemi tamamlandığında, en son model dosyamızı oluşturmalıyız(.
 Verilen bir resimdeki nesneleri tanımak istiyorsak
 <br>"C:\dosyaİsmi\models\research\object_detection" klasörünün içinde yer alan "Object_detection_image.py" dosyasını çalıştırın.
 <br>"Object_detection_image.py" dosyasını çalıştırmadan önce "NUM_CLASSES = tanıttığınızNesneSayısı" şeklinde düzenleyin. 
+
 ` NUM_CLASSES=1 `
 
 <br>"C:\dosyaİsmi\models\research\object_detection" test edeceğiniz resmi bu dizine kopyalayın.
 <br>IMAGE_NAME = 'test.jpg' bölümünü kendi resim dosyanızın ismi olacak şekilde düzenleyin.
-<br>IMAGE_NAME = 't2.jpg'
+
+` IMAGE_NAME = 't2.jpg' `
+
 <br>Son olarak aşağıdaki komutu çalıştırın:
+
 ` python Object_detection_image.py `
 
 
 ## 10.Kapanış ve Sonuçlar
 > conda deactivate 
+
 <br>Yazarak kapatabilirsiniz.
