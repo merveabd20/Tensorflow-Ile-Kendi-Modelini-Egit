@@ -244,10 +244,41 @@ Dizini kendi dizin isminize göre değiştirin.
 
 
 ## 7. Modeli Eğitme
+> C:\dosyaİsmi\models\research\object_detection\legacy 
+
+<br>Klasörünün içinde bulunan “train.py” dosyayı object_detection klasörüne kopyalayın.
+
+<br>Belirtilen komutu "C:\dosyaİsmi\models\research\object_detection" klasörünün içinde çalıştırın:
+
+` cd C:\kelebek\models\research\object_detection `
+
+` python train.py --logtostderr --train_dir=training/ --pipeline_config_path=training/faster_rcnn_inception_v2_pets.config `
 
 ## 8. Modeli Çıkartma
+Eğitim işlemi tamamlandığında, en son model dosyamızı oluşturmalıyız(.pb uzantılı).
+<br>Aşağıdaki komutta "XXXX" değerini "C:\dosyaİsmi\models\research\object_detection\training" klasöründeki en büyük sayı ile değiştirin. 
+
+> python export_inference_graph.py --input_type image_tensor --pipeline_config_path training/faster_rcnn_inception_v2_pets.config --trained_checkpoint_prefix training/model.ckpt-XXXX --output_directory inference_graph
+
+<br>Daha sonra belirtilen komutu "C:\dosyaİsmi\models\research\object_detection" klasörünün içinde çalıştırın:
+
+` cd C:\kelebek\models\research\object_detection `
+
+` python export_inference_graph.py --input_type image_tensor --pipeline_config_path training/faster_rcnn_inception_v2_pets.config --trained_checkpoint_prefix training/model.ckpt-4000 --output_directory inference_graph `
 
 ## 9. Modeli Kullanma
+Verilen bir resimdeki nesneleri tanımak istiyorsak
+<br>"C:\dosyaİsmi\models\research\object_detection" klasörünün içinde yer alan "Object_detection_image.py" dosyasını çalıştırın.
+<br>"Object_detection_image.py" dosyasını çalıştırmadan önce "NUM_CLASSES = tanıttığınızNesneSayısı" şeklinde düzenleyin. 
+` NUM_CLASSES=1 `
+
+<br>"C:\dosyaİsmi\models\research\object_detection" test edeceğiniz resmi bu dizine kopyalayın.
+<br>IMAGE_NAME = 'test.jpg' bölümünü kendi resim dosyanızın ismi olacak şekilde düzenleyin.
+<br>IMAGE_NAME = 't2.jpg'
+<br>Son olarak aşağıdaki komutu çalıştırın:
+` python Object_detection_image.py `
+
 
 ## 10.Kapanış ve Sonuçlar
-
+> conda deactivate 
+<br>Yazarak kapatabilirsiniz.
