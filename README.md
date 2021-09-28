@@ -42,20 +42,54 @@ Burada dikkat etmemiz gereken şey kullandığımız Tensorflow’un sürümüd�
 
 
 ## 4. CMD Üzerinden Gerekli Kütüphanelerin Kurulması
-> CMD’yi yönetici olarak çalıştırın. Aşağıda verilen adımları sırası ile uygulayın.
-<br> ` conda create -n sanalOrtamınİsmi pip python=kullanmak istediğinsürüm `
-(Tensorflow =1.15.0 ile python=3.6 uyumlu sürümlerdir.)
-> conda create -n kelebek pip python=3.6
+CMD’yi yönetici olarak çalıştırın. Aşağıda verilen adımları sırası ile uygulayın.
+> conda create -n sanalOrtamınİsmi pip python=kullanmak istediğinsürüm
+
+<br>(Tensorflow =1.15.0 ile python=3.6 uyumlu sürümlerdir.)
+
+` conda create -n kelebek pip python=3.6 `
+
 > conda activate sanalOrtamınİsmi
-> conda activate kelebek
 
-python -m pip install --upgrade pip
-pip install tensorflow-addons[tensorflow]
-conda install tensorflow-gpu==1.15.0
-pip install tensorflow==1.15.0
-conda install -c anaconda protobuf
-python -m pip install tf_slim pywin32==225 pycocotools-windows
+` conda activate kelebek `
 
+> python -m pip install --upgrade pip
+
+> pip install tensorflow-addons[tensorflow]
+
+> conda install tensorflow-gpu==1.15.0
+
+> pip install tensorflow==1.15.0
+
+> conda install -c anaconda protobuf
+
+> python -m pip install tf_slim pywin32==225 pycocotools-windows
+
+> python -m pip install lvis
+
+> pip install pillow lxml cython jupyter matplotlib pandas opencv-python numpy
+
+<br> Çevre değişkenini tanımlayalım. CMD’yi her yeniden açtığımızda bu kısmı tekrarlayalım.
+> set PYTHONPATH=C:\dosyaİsmi\models;C:\dosyaİsmi\models\research;C:\dosyaİsmi\models\research\slim
+` set PYTHONPATH=C:\kelebek\models;C:\kelebek\models\research;C:\kelebek\models\research\slim `
+<br> Protobufları derleyelim ve setup.py dosyasını çalıştıralım.
+<br> Protobuf : Gerçek ismi Protocol Buffers olan, Google’ın kendi içindeki veri iletisiminde de bolca kullandığı bir veri transfer protokolüdür. 
+<br> Gerekli dizine gidelim.
+> cd C:\dosyaİsmi\models\research
+` cd C:\kelebek\models\research `
+
+<br>Aşağıdaki kodu çalıştıralım.
+> protoc --python_out=. .\object_detection\protos\anchor_generator.proto .\object_detection\protos\argmax_matcher.proto .\object_detection\protos\bipartite_matcher.proto .\object_detection\protos\box_coder.proto .\object_detection\protos\box_predictor.proto .\object_detection\protos\eval.proto .\object_detection\protos\faster_rcnn.proto .\object_detection\protos\faster_rcnn_box_coder.proto .\object_detection\protos\grid_anchor_generator.proto .\object_detection\protos\hyperparams.proto .\object_detection\protos\image_resizer.proto .\object_detection\protos\input_reader.proto .\object_detection\protos\losses.proto .\object_detection\protos\matcher.proto .\object_detection\protos\mean_stddev_box_coder.proto .\object_detection\protos\model.proto .\object_detection\protos\optimizer.proto .\object_detection\protos\pipeline.proto .\object_detection\protos\post_processing.proto .\object_detection\protos\preprocessor.proto .\object_detection\protos\region_similarity_calculator.proto .\object_detection\protos\square_box_coder.proto .\object_detection\protos\ssd.proto .\object_detection\protos\ssd_anchor_generator.proto .\object_detection\protos\string_int_label_map.proto .\object_detection\protos\train.proto .\object_detection\protos\keypoint_box_coder.proto
+
+
+<br> Gerekli dizine gidelim.
+> cd C:\dosyaİsmi\models\research\object_detection\packages\tf1
+<br> Burada da dikkat etmemiz gereken kısım tenserflow 1 sürümü için olan setup.py dosyası kullanılmıştır. Eğer tensorflow 2 sürümü için kullanmak istiyorsanız tf1’i tf2 olarak değiştirin.
+` cd C:\kelebek\models\research\object_detection\packages\tf1 `
+<br> Gerekli dizine gidildikten sonra setup.py dosyası için olan işlemler yapılır.
+> python setup.py build
+
+> python setup.py install
 
 
 ## 5. Fotoğraf Toplama ve Resimleri Etiketleme
