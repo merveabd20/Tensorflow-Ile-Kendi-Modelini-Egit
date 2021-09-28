@@ -1,2 +1,1 @@
-# Tensorflow-Ile-Kendi-Modelini-Egit
- Tensowflow İle Kendi Modelini Eğitme
+#TENSORFLOW İLE KENDİ MODELİNİ EĞİTME-ÖRNEK BİR PROJE
