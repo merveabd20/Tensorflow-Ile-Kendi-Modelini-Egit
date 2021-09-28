@@ -33,13 +33,17 @@ Bu adımda sanal ortamda projeyi oluşturup diğer adımlara geçeceğiz. Bu san
 #### 3.2. Edje Electronics Repository İndirilmesi
 [Edje Electronics repository](https://codeload.github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10/zip/master) linkten dosyaları indirelim.
 > C:\dosyaİsmi\models\research\object_detection 
-dizinine indirdiğimiz dosyaları çıkaralım.
+
+Dizinine indirdiğimiz dosyaları çıkaralım.
 
 
 #### 3.3. Faster-RCNN-Inception-V2-COCO İndirilmesi
 Burada dikkat etmemiz gereken şey kullandığımız Tensorflow’un sürümüdür. Aşağıda verilen link Tensorflow 1 sürümleri için geçerlidir. Eğer siz 2 sürümünü kullanıyorsanız uygun bir modeli indirin!
 <br>[faster_rcnn_inception_v2_coco](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1_detection_zoo.md) modelini TensorFlow'un model zoo kısmından indirelim.
 
+> C:\dosyaİsmi\models\research\object_detection 
+
+Dizinine indirdiğimiz dosyaları çıkaralım.
 
 ## 4. CMD Üzerinden Gerekli Kütüphanelerin Kurulması
 CMD’yi yönetici olarak çalıştırın. Aşağıda verilen adımları sırası ile uygulayın.
